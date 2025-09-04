@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester 5 Kick-off | Software Engineering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bangers&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .section.active {
+            display: block;
+            opacity: 1;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            transform: translateX(4px);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            border: 2px solid white;
+        }
+        /* Chat bubble animation */
+        @keyframes pop-in {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .chat-bubble {
+            animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-white/80 backdrop-blur-lg border-r border-slate-200 p-6 sticky top-0 h-screen hidden md:flex flex-col">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="bg-indigo-600 p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20V16"/></svg>
+                </div>
+                <h1 class="text-xl font-bold text-slate-800">Semester 5</h1>
+            </div>
+            <nav id="navigation" class="flex flex-col space-y-2">
+                <a href="#slide1" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Intro</a>
+                <a href="#slide2" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">At a Glance</a>
+                <a href="#slide3" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Study Points</a>
+                <a href="#slide4" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Semester Timeline</a>
+                <a href="#slide7" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Semester Deliverables</a>
+                <a href="#modules" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Modules</a>
+                <a href="#slide5" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">SE Project</a>
+                <a href="#slide6" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Workflow & Coaching</a>
+                <a href="#source-of-truth" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Project Documentation</a>
+                <a href="#slide8" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Bachelor's Thesis</a>
+                <a href="#slide9" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Project and BAP Milestones</a>
+                <a href="#slide10" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Expectations</a>
+                <a href="#slide11" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Takeaways</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 md:p-12">
+            <div class="max-w-4xl mx-auto">
+                
+                <!-- Slide 1: Title -->
+                <section id="slide1" class="section">
+                    <div class="text-center">
+                        <span class="text-indigo-600 font-semibold mb-2 block">3rd Year Software Engineering</span>
+                        <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-slate-900">Semester 5 Kick-off</h1>
+                        <p class="mt-6 text-lg text-slate-600">September 4, 2025 | The Semester 5 Team</p>
+                    </div>
+                    <div class="mt-12">
+                        <img src="intro.png" alt="Cinematic comic style poster for Semester 5: The Bridge to Engineer" class="rounded-xl shadow-2xl w-full max-w-3xl mx-auto">
+                    </div>
+                </section>
+
+                <!-- Slide 2: Semester 5 at a Glance -->
+                <section id="slide2" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Semester 5 at a Glance</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                            <h3 class="text-xl font-bold mb-3 text-indigo-700">Classes & Modules</h3>
+                            <p class="text-slate-600">Core knowledge building in the first weeks of the semester.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                            <h3 class="text-xl font-bold mb-3 text-indigo-700">SE Project</h3>
+                            <p class="text-slate-600">A major team-based capstone to apply your skills on a real-world problem.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                            <h3 class="text-xl font-bold mb-3 text-indigo-700">Bachelor's Thesis (BAP)</h3>
+                            <p class="text-slate-600">An individual research and reflection paper, often linked to your project.</p>
+                        </div>
+                    </div>
+                     <div class="mt-12 p-6 bg-slate-100 rounded-xl border border-slate-200">
+                        <h4 class="font-semibold text-lg mb-2">Timeline Snapshot</h4>
+                        <p class="text-slate-600">A fast-paced semester running from September to January, culminating in your project defense and thesis submission.</p>
+                    </div>
+                </section>
+
+                <!-- Slide 3: Study Points (Weights) -->
+                <section id="slide3" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Study Points (SP)</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                             <h3 class="text-2xl font-bold mb-4">Modules (12 SP total)</h3>
+                             <ul class="space-y-3">
+                                <li class="flex justify-between items-center p-3 bg-slate-50 rounded-lg"><span>UX Engineering</span> <span class="font-bold text-indigo-600">3 SP</span></li>
+                                <li class="flex justify-between items-center p-3 bg-slate-50 rounded-lg"><span>Data Structures & Algorithms</span> <span class="font-bold text-indigo-600">3 SP</span></li>
+                                <li class="flex justify-between items-center p-3 bg-slate-50 rounded-lg"><span>Domain Driven Design</span> <span class="font-bold text-indigo-600">3 SP</span></li>
+                                <li class="flex justify-between items-center p-3 bg-slate-50 rounded-lg"><span>Software Design</span> <span class="font-bold text-indigo-600">3 SP</span></li>
+                             </ul>
+                        </div>
+                        <div class="space-y-8">
+                            <div class="bg-white p-6 rounded-xl shadow-lg">
+                                 <h3 class="text-2xl font-bold mb-2">SE Project</h3>
+                                 <p class="text-4xl font-bold text-indigo-600">12 <span class="text-2xl text-slate-500">SP</span></p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-lg">
+                                 <h3 class="text-2xl font-bold mb-2">Bachelor's Thesis (BAP)</h3>
+                                 <p class="text-4xl font-bold text-indigo-600">6 <span class="text-2xl text-slate-500">SP</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- New Slide: Modules -->
+                <section id="modules" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Module Descriptions</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-2xl font-bold mb-4 text-indigo-700">Domain Driven Design</h3>
+                            <p class="font-semibold text-slate-800">Goal:</p>
+                            <p class="mb-4 text-slate-600">To develop software that closely aligns with complex business domains, focusing on creating understandable, maintainable, and scalable solutions centered on domain logic.</p>
+                            <p class="font-semibold text-slate-800">Why it matters:</p>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 mt-2">
+                                <li>Master complexity in large projects.</li>
+                                <li>Improve communication with a shared language.</li>
+                                <li>Increase maintainability with modular systems.</li>
+                                <li>Bridge the gap between technical solutions and business goals.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-2xl font-bold mb-4 text-indigo-700">Data Structures & Algorithms</h3>
+                            <p class="font-semibold text-slate-800">Goal:</p>
+                            <p class="mb-4 text-slate-600">To understand and apply the fundamentals of data structures and algorithms, emphasizing the selection of efficient solutions for performance and scalability.</p>
+                             <p class="font-semibold text-slate-800">Why it matters:</p>
+                             <ul class="list-disc list-inside space-y-1 text-slate-600 mt-2">
+                                <li>Significantly improve application performance.</li>
+                                <li>Strengthen analytical and problem-solving skills.</li>
+                                <li>Design robust, high-quality software components.</li>
+                                <li>Justify technical choices with scientific evidence.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-2xl font-bold mb-4 text-indigo-700">Software Design</h3>
+                            <p class="font-semibold text-slate-800">Goal:</p>
+                            <p class="mb-4 text-slate-600">To learn new design techniques and reflect on existing ones, working from the smallest unit (a line of code) up to the entire system architecture.</p>
+                             <p class="font-semibold text-slate-800">Why it matters:</p>
+                             <ul class="list-disc list-inside space-y-1 text-slate-600 mt-2">
+                                <li>Gain a deeper understanding of development choices.</li>
+                                <li>Increase maintainability by consistently using design patterns.</li>
+                                <li>Create systems that are easier to understand and extend.</li>
+                             </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-2xl font-bold mb-4 text-indigo-700">UX Engineering</h3>
+                            <p class="font-semibold text-slate-800">Goal:</p>
+                            <p class="mb-4 text-slate-600">To build digital applications with a core focus on accessibility, expanding on knowledge from previous web development courses.</p>
+                             <p class="font-semibold text-slate-800">Why it matters:</p>
+                             <ul class="list-disc list-inside space-y-1 text-slate-600 mt-2">
+                                <li>Accessibility is a fundamental aspect of quality software.</li>
+                                <li>It is a mandatory legal requirement for companies under the EU Digital Services Act.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4: Timeline Overview -->
+                <section id="slide4" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Semester Timeline Overview</h2>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-50 border-b border-slate-200">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Period</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Dates</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Classes</span></td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">15/09 – 25/10</td>
+                                    <td class="px-6 py-4 text-slate-800">Regular classes</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">Break</span></td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">27/10 – 01/11</td>
+                                    <td class="px-6 py-4 text-slate-800">Autumn break (no classes)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Classes</span></td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">03/11 – 08/11</td>
+                                    <td class="px-6 py-4 text-slate-800">Buffer / extra classes week</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-amber-100 text-amber-800">Exams</span></td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">10/11 – 22/11</td>
+                                    <td class="px-6 py-4 text-slate-800">Module exam period</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">Project and BAP</span></td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">24/11 – 20/12</td>
+                                    <td class="px-6 py-4 text-slate-800">SE Project + BAP (part 1)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">Break</span></td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">22/12 – 03/01</td>
+                                    <td class="px-6 py-4 text-slate-800">Winter/work break</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">Project and BAP</span></td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">05/01 – 17/01</td>
+                                    <td class="px-6 py-4 text-slate-800">SE Project + BAP (part 2)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Exams</span></td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">19/01 – 24/01</td>
+                                    <td class="px-6 py-4 text-slate-800">Project oral exams + BAP evaluation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Slide 5: The Software Engineering Project -->
+                <section id="slide5" class="section">
+                    <h2 class="text-4xl font-bold mb-4">The Software Engineering Project</h2>
+                    <p class="text-lg text-slate-600 mb-8">A lecturer-proposed, real-world topic executed by a team of three. You will investigate unfamiliar technologies, make and defend engineering decisions, and deliver a working, documented, and tested solution.</p>
+                    
+                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg mb-8">
+                        <p class="text-indigo-800">Your Bachelor’s thesis (BAP) runs in parallel to capture the rationale, evidence, and reflection behind your project work.</p>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-6">Core Requirements</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200">
+                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Code & Usability</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600">
+                                <li>Hosted on GitHub in a team-owned repo.</li>
+                                <li>Deliver a ready-to-use artifact (app, library, etc.).</li>
+                                <li>One-command setup (e.g., `docker compose up`).</li>
+                                <li>Provide `env.example` and sensible defaults.</li>
+                            </ul>
+                        </div>
+                         <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200">
+                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Documentation</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600">
+                                <li>Clear `README.md` with quick start & usage.</li>
+                                <li>Installation and deployment guide.</li>
+                                <li>Architecture overview.</li>
+                                <li>`RESEARCH.md` to document your process.</li>
+                            </ul>
+                        </div>
+                         <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200">
+                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Professional Workflow</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600">
+                                <li>Develop on feature branches.</li>
+                                <li>Keep `main` branch protected and green.</li>
+                                <li>CI pipeline on push/PR (lint, test, build).</li>
+                                <li>Track work with GitHub Issues & Projects.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200">
+                            <h4 class="font-semibold text-lg mb-2 text-slate-800">Research & Rationale</h4>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600">
+                                <li>Follow the structured Research Flow.</li>
+                                <li>Define objectives, scope, and success metrics.</li>
+                                <li>Analyze existing solutions and alternatives.</li>
+                                <li>Justify technology and architecture choices.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 6: Project Workflow & Coaching -->
+                <section id="slide6" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Project Workflow & Coaching</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-2xl font-bold mb-4 text-indigo-700">Project Coaching</h3>
+                            <dl class="space-y-4">
+                                <div>
+                                    <dt class="font-semibold text-slate-800">Frequency</dt>
+                                    <dd class="text-slate-600">Weekly for the first two weeks, then bi-weekly.</dd>
+                                </div>
+                                <div>
+                                    <dt class="font-semibold text-slate-800">Purpose</dt>
+                                    <dd class="text-slate-600">Progress review, scope alignment, and risk management.</dd>
+                                </div>
+                                <div>
+                                    <dt class="font-semibold text-slate-800">Who Attends</dt>
+                                    <dd class="text-slate-600">The full team (20min format).</dd>
+                                </div>
+                                <div>
+                                    <dt class="font-semibold text-slate-800">How to Prepare</dt>
+                                    <dd class="text-slate-600">Bring a short agenda, demo of latest work, and top blockers.</dd>
+                                </div>
+                                <div>
+                                    <dt class="font-semibold text-slate-800">Outcomes</dt>
+                                    <dd class="text-slate-600">Agreed decisions and action items recorded in your repo.</dd>
+                                </div>
+                            </dl>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-2xl font-bold mb-4 text-emerald-700">Technical Coaching</h3>
+                             <dl class="space-y-4">
+                                <div>
+                                    <dt class="font-semibold text-slate-800">Frequency</dt>
+                                    <dd class="text-slate-600">One half-day per week; book a slot.</dd>
+                                </div>
+                                <div>
+                                    <dt class="font-semibold text-slate-800">Purpose</dt>
+                                    <dd class="text-slate-600">Deep technical unblocking and design guidance.</dd>
+                                </div>
+                                <div>
+                                    <dt class="font-semibold text-slate-800">Who Attends</dt>
+                                    <dd class="text-slate-600">Relevant team members closest to the problem.</dd>
+                                </div>
+                                <div>
+                                    <dt class="font-semibold text-slate-800">How to Prepare</dt>
+                                    <dd class="text-slate-600">Bring a minimal reproducible example, logs, and specific questions.</dd>
+                                </div>
+                                 <div>
+                                    <dt class="font-semibold text-slate-800">Etiquette</dt>
+                                    <dd class="text-slate-600">For targeted questions only; not a replacement for self-study.</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <h3 class="text-3xl font-bold mb-6">Coaching Schedule</h3>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-50 border-b border-slate-200">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Week</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Dates</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">On‑campus</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Coaching</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">1</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">24/11–29/11</td>
+                                    <td class="px-6 py-4"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span></td>
+                                    <td class="px-6 py-4 text-slate-800">Project &amp; Technical</td>
+                                </tr>
+                                 <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">2</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">01/12–06/12</td>
+                                    <td class="px-6 py-4"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span></td>
+                                    <td class="px-6 py-4 text-slate-800">Project &amp; Technical</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">3</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">08/12–13/12</td>
+                                    <td class="px-6 py-4"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span></td>
+                                    <td class="px-6 py-4 text-slate-800">Technical only</td>
+                                </tr>
+                                 <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">4</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">15/12–20/12</td>
+                                    <td class="px-6 py-4"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span></td>
+                                    <td class="px-6 py-4 text-slate-800">Project &amp; Technical</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td class="px-6 py-4 font-medium text-slate-500">—</td>
+                                    <td class="px-6 py-4 font-mono text-slate-500">22/12–28/12</td>
+                                    <td class="px-6 py-4"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">No</span></td>
+                                    <td class="px-6 py-4 text-slate-500">None</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td class="px-6 py-4 font-medium text-slate-500">—</td>
+                                    <td class="px-6 py-4 font-mono text-slate-500">29/12–03/01</td>
+                                    <td class="px-6 py-4"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">No</span></td>
+                                    <td class="px-6 py-4 text-slate-500">None</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">5</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">05/01–10/01</td>
+                                    <td class="px-6 py-4"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span></td>
+                                    <td class="px-6 py-4 text-slate-800">Project &amp; Technical</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">6</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">12/01–17/01</td>
+                                    <td class="px-6 py-4"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span></td>
+                                    <td class="px-6 py-4 text-slate-800">Technical only</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td class="px-6 py-4 font-medium text-slate-900">Exam</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">19/01–24/01</td>
+                                    <td class="px-6 py-4"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span></td>
+                                    <td class="px-6 py-4 text-slate-800">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- New Slide: Source of Truth -->
+                <section id="source-of-truth" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Project Documentation: The Source of Truth</h2>
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+                        <p class="text-lg text-slate-600 mb-6">
+                            This presentation provides a high-level overview. For all detailed project information, guidelines, templates, and updates, the official project documentation is the **single source of truth**. Please refer to it regularly.
+                        </p>
+                        <a href="https://se-project.technet.howest.be/project_info/introduction.html" target="_blank" rel="noopener noreferrer" class="inline-block bg-indigo-600 text-white font-bold text-lg px-8 py-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            View Project Documentation
+                        </a>
+                    </div>
+                </section>
+
+
+                 <!-- Slide 7: Project Deliverables -->
+                 <section id="slide7" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Semester Deliverables</h2>
+                    <p class="text-lg text-slate-600 mb-8">An overview of the key evaluations for each part of the semester.</p>
+                     <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-50 border-b border-slate-200">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Component</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Deliverable</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Modules</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Permanent Evaluation</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">During class weeks</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Modules</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Module Exam Period</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">10/11 – 22/11</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">BAP</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Interim Presentation</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">Week of 08/12</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">BAP</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Parallel Report Writing</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">During project weeks</td>
+                                </tr>
+                                 <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">BAP</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Final Report Submission</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">11/01, 23:59</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-emerald-100 text-emerald-800">SE Project</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Team & Project Choice Forms</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">17/10, 23:59</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-emerald-100 text-emerald-800">SE Project</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Initial Research & Plan</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">in the week of 01/12</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-emerald-100 text-emerald-800">SE Project</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Working Demo for Coaching</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">Ongoing</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-emerald-100 text-emerald-800">SE Project</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Working Software & Repo</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">By Final Exam</td>
+                                </tr>
+                                <tr>
+                                     <td class="px-6 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-emerald-100 text-emerald-800">SE Project</span></td>
+                                    <td class="px-6 py-4 font-medium text-slate-800">Final Oral Exam</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">19/01 – 24/01</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Slide 8: The Bachelor's Thesis (BAP) -->
+                <section id="slide8" class="section">
+                     <h2 class="text-4xl font-bold mb-8">The Bachelor's Thesis (BAP)</h2>
+                     <p class="text-lg text-slate-600 mb-6">Running in parallel with your project, the BAP is your chance to dive deep into the "why" behind your work.</p>
+                     <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg">
+                        <h4 class="font-bold text-xl mb-3 text-indigo-800">Purpose of the BAP</h4>
+                        <ul class="list-disc list-inside text-indigo-900/80 space-y-2">
+                            <li>Document your reasoning and technical choices.</li>
+                            <li>Argue your decisions with evidence and research.</li>
+                            <li>Reflect critically on your engineering practice and project outcomes.</li>
+                        </ul>
+                     </div>
+                     <div class="mt-8 text-center p-4 bg-red-50 text-red-700 rounded-lg">
+                        <strong>Submission Deadline:</strong> January 11th, 23:59
+                     </div>
+                </section>
+                
+                <!-- Slide 9: Key Milestones & Deadlines -->
+                <section id="slide9" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Project and BAP Milestones</h2>
+                    <div class="flow-root">
+                        <ul class="-mb-8">
+                            <li>
+                                <div class="relative pb-8">
+                                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-slate-200" aria-hidden="true"></span>
+                                    <div class="relative flex space-x-3 items-start">
+                                        <div>
+                                            <span class="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center ring-8 ring-white">
+                                                <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+                                            </span>
+                                        </div>
+                                        <div class="min-w-0 flex-1 pt-1.5">
+                                            <p class="font-medium text-gray-900">17/10 – Team/project choice deadline</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                             <li>
+                                <div class="relative pb-8">
+                                    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-slate-200" aria-hidden="true"></span>
+                                    <div class="relative flex space-x-3 items-start">
+                                        <div><span class="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center ring-8 ring-white"><svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></span></div>
+                                        <div class="min-w-0 flex-1 pt-1.5"><p class="font-medium text-gray-900">24/10 – Allocations published</p></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="relative pb-8">
+                                     <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-slate-200" aria-hidden="true"></span>
+                                    <div class="relative flex space-x-3 items-start">
+                                        <div><span class="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center ring-8 ring-white"><svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></span></div>
+                                        <div class="min-w-0 flex-1 pt-1.5"><p class="font-medium text-gray-900">24/11 – Project kick-off</p></div>
+                                    </div>
+                                </div>
+                            </li>
+                             <li>
+                                <div class="relative pb-8">
+                                     <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-slate-200" aria-hidden="true"></span>
+                                    <div class="relative flex space-x-3 items-start">
+                                        <div><span class="h-8 w-8 rounded-full bg-amber-500 flex items-center justify-center ring-8 ring-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-white"><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg></span></div>
+                                        <div class="min-w-0 flex-1 pt-1.5"><p class="font-medium text-gray-900">08/12 – Interim presentation</p></div>
+                                    </div>
+                                </div>
+                            </li>
+                             <li>
+                                <div class="relative pb-8">
+                                     <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-slate-200" aria-hidden="true"></span>
+                                    <div class="relative flex space-x-3 items-start">
+                                        <div><span class="h-8 w-8 rounded-full bg-red-500 flex items-center justify-center ring-8 ring-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-white"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></span></div>
+                                        <div class="min-w-0 flex-1 pt-1.5"><p class="font-medium text-gray-900">11/01 – BAP submission</p></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="relative pb-0">
+                                    <div class="relative flex space-x-3 items-start">
+                                        <div><span class="h-8 w-8 rounded-full bg-red-500 flex items-center justify-center ring-8 ring-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-white"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></span></div>
+                                        <div class="min-w-0 flex-1 pt-1.5"><p class="font-medium text-gray-900">19–24/01 – Oral exams</p></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Slide 10: Expectations & Professionalism -->
+                 <section id="slide10" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Expectations & Professionalism</h2>
+                    <div class="space-y-10">
+
+                        <!-- General Expectations -->
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-slate-800 border-b pb-2">General</h3>
+                            <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                                <ul class="list-disc list-inside space-y-3 text-slate-700">
+                                    <li><span class="font-semibold text-slate-900">Work Hard & Participate Actively:</span> Your engagement is crucial. Attend class when asked, participate in discussions, and complete all preparatory work.</li>
+                                    <li><span class="font-semibold text-slate-900">A Semester of Growth:</span> If you commit fully, this semester will significantly elevate your skills and prepare you for a professional career.</li>
+                                </ul>
+                            </div>
+                        </div>
+                
+                        <!-- Modules -->
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-slate-800 border-b pb-2">Modules</h3>
+                            <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                                 <ul class="list-disc list-inside space-y-3 text-slate-700">
+                                    <li><span class="font-semibold text-slate-900">Don't Underestimate the Workload:</span> The time required outside of lectures for study and assignments is significant. Do not fall behind.</li>
+                                    <li><span class="font-semibold text-slate-900">Complete All Assignments:</span> All homework and preparations are designed to build your understanding and are considered mandatory.</li>
+                                </ul>
+                            </div>
+                        </div>
+                
+                        <!-- SE Project & BAP -->
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-slate-800 border-b pb-2">SE Project & BAP</h3>
+                            <div class="grid md:grid-cols-2 gap-6 text-left">
+                                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                                    <h4 class="text-lg font-bold mb-2">Full-Time Workload</h4>
+                                    <p class="text-slate-600">During project weeks, expect a full-time commitment to your team and deliverables.</p>
+                                </div>
+                                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                                    <h4 class="text-lg font-bold mb-2">Student Autonomy</h4>
+                                    <p class="text-slate-600">You are in the driver's seat. Your team is responsible for planning, execution, and quality control.</p>
+                                </div>
+                                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                                    <h4 class="text-lg font-bold mb-2">Professional Quality</h4>
+                                    <p class="text-slate-600">Deliverables are expected to be of a professional standard, from code to documentation.</p>
+                                </div>
+                                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                                    <h4 class="text-lg font-bold mb-2">Collaboration is Key</h4>
+                                    <p class="text-slate-600">Engage in constructive peer feedback, maintain clear communication, and ensure your work is reproducible.</p>
+                                </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                </section>
+                
+                <!-- Slide 11: Takeaways -->
+                <section id="slide11" class="section">
+                     <h2 class="text-4xl font-bold mb-8">Takeaways</h2>
+                     <p class="text-xl text-slate-700 mb-8">Semester 5 is the bridge from <span class="font-bold text-indigo-600">student</span> to professional <span class="font-bold text-indigo-600">engineer</span>.</p>
+                     
+                     <div class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6">By the end of this semester, you will deliver:</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-slate-100 p-6 rounded-lg">
+                                <h4 class="font-semibold text-lg">A Full-Scale Software Project</h4>
+                                <p class="text-slate-600">Completed as a team, ready for your portfolio.</p>
+                            </div>
+                             <div class="bg-slate-100 p-6 rounded-lg">
+                                <h4 class="font-semibold text-lg">A Bachelor's Thesis</h4>
+                                <p class="text-slate-600">An individual work defending your engineering decisions.</p>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold mt-8 mb-6">You will master essential skills:</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-slate-100 p-6 rounded-lg">
+                                <h4 class="font-semibold text-lg">Advanced Engineering Knowledge</h4>
+                                <p class="text-slate-600">Your expertise will be significantly deepened through four advanced modules and the practical skills learned in class.</p>
+                            </div>
+                             <div class="bg-slate-100 p-6 rounded-lg">
+                                <h4 class="font-semibold text-lg">Professional & Soft Skills</h4>
+                                <p class="text-slate-600">Master teamwork, rapid learning, defending technical decisions, and building your professional portfolio.</p>
+                            </div>
+                        </div>
+                     </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Chat Preview -->
+    <div id="chat-container" class="fixed bottom-6 right-6">
+        <button id="chat-toggle" class="bg-indigo-600 text-white w-16 h-16 rounded-full shadow-xl flex items-center justify-center hover:bg-indigo-700 transition-transform transform hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path></svg>
+        </button>
+        <div id="chat-window" class="absolute bottom-20 right-0 w-80 bg-white rounded-xl shadow-2xl border border-slate-200 hidden flex-col h-96">
+            <div class="p-4 bg-indigo-600 text-white rounded-t-xl">
+                <h3 class="font-bold">Questions?</h3>
+                <p class="text-sm opacity-90">Ask me anything about the semester.</p>
+            </div>
+            <div class="flex-1 p-4 space-y-4 overflow-y-auto">
+                <div class="chat-bubble p-3 bg-slate-100 rounded-lg max-w-xs self-start" style="animation-delay: 0.2s;">
+                    Hi! What's the main focus of the SE Project?
+                </div>
+                <div class="chat-bubble p-3 bg-indigo-600 text-white rounded-lg max-w-xs self-end ml-auto" style="animation-delay: 0.8s;">
+                    The main focus is on applying your skills to a real-world problem using professional workflows like Git, CI/CD, and thorough documentation.
+                </div>
+                 <div class="chat-bubble p-3 bg-slate-100 rounded-lg max-w-xs self-start" style="animation-delay: 1.5s;">
+                    Got it, thanks!
+                </div>
+            </div>
+            <div class="p-2 border-t border-slate-200">
+                <input type="text" placeholder="Type your message..." class="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function showSection(hash) {
+                // Default to the first slide if hash is empty or invalid
+                const targetHash = hash || '#slide1';
+                
+                sections.forEach(section => {
+                    if ('#' + section.id === targetHash) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === targetHash) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            // Navigation click handler
+            document.getElementById('navigation').addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const targetHash = e.target.getAttribute('href');
+                    // Use history.pushState to change URL without reloading
+                    history.pushState(null, '', targetHash);
+                    showSection(targetHash);
+                }
+            });
+            
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', function() {
+                showSection(window.location.hash);
+            });
+
+            // Show initial section based on URL hash
+            showSection(window.location.hash);
+
+            // Chat preview functionality
+            const chatToggle = document.getElementById('chat-toggle');
+            const chatWindow = document.getElementById('chat-window');
+
+            chatToggle.addEventListener('click', function() {
+                const isHidden = chatWindow.classList.contains('hidden');
+                if (isHidden) {
+                    chatWindow.classList.remove('hidden');
+                    chatWindow.classList.add('flex');
+                } else {
+                    chatWindow.classList.add('hidden');
+                    chatWindow.classList.remove('flex');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
