@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Kickoff | Software Engineering Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bangers&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .section.active {
+            display: block;
+            opacity: 1;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+            transform: translateX(4px);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            border: 2px solid white;
+        }
+        @keyframes pop-in {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .chat-bubble {
+            animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-white/80 backdrop-blur-lg border-r border-slate-200 p-6 sticky top-0 h-screen hidden md:flex flex-col">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="bg-indigo-600 p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20V16"/></svg>
+                </div>
+                <h1 class="text-xl font-bold text-slate-800">Project Kickoff</h1>
+            </div>
+            <nav id="navigation" class="flex flex-col space-y-2 flex-1">
+                <a href="#slide1" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Welcome</a>
+                <a href="#slide2" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Recent Updates</a>
+                <a href="#slide3" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Your Coach Team</a>
+                <a href="#slide4" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Coaching Schedule</a>
+                <a href="#slide5" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Technical Coaching</a>
+                <a href="#slide6" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">How to Start</a>
+                <a href="#slide7" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Preparing for Coaching</a>
+                <a href="#slide8" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Project Management</a>
+                <a href="#slide9" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Resources</a>
+                <a href="#slide10" class="nav-link p-3 rounded-lg font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">Questions?</a>
+            </nav>
+            <!-- Page Navigation -->
+            <div class="mt-8 flex gap-2">
+                <button id="prev-slide" class="bg-white/80 backdrop-blur-lg border border-slate-200 text-slate-600 w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-indigo-50 transition-transform transform hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed flex-1" title="Previous slide">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <button id="next-slide" class="bg-white/80 backdrop-blur-lg border border-slate-200 text-slate-600 w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-indigo-50 transition-transform transform hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed flex-1" title="Next slide">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <!-- Slide 1: Title -->
+            <section id="slide1" class="section">
+                <div class="h-screen flex flex-col">
+                    <div class="flex-grow flex items-center justify-center text-center p-6 md:p-12">
+                        <div>
+                            <span class="text-indigo-600 font-semibold mb-2 block">Software Engineering Project</span>
+                            <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-slate-900">Project Kickoff</h1>
+                            <p class="mt-6 text-lg text-slate-600">November 24, 2025 | Let's Get Started! 🚀</p>
+                        </div>
+                    </div>
+                    <div class="w-full" style="height: 66.66vh;">
+                        <img src="intro-w.png" alt="Project kickoff background" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </section>
+
+            <div class="max-w-6xl mx-auto p-6 md:p-12">
+                
+                <!-- Slide 2: Recent Updates (November 17) -->
+                <section id="slide2" class="section">
+                    <h2 class="text-4xl font-bold mb-8">What's New? 📢</h2>
+                    <p class="text-lg text-slate-600 mb-8">Important updates from November 17, 2025</p>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg border border-blue-200">
+                            <h3 class="text-2xl font-bold mb-3 text-blue-800">📅 Project Coaching Schedule</h3>
+                            <p class="text-slate-700 mb-3">Detailed coaching schedule is now available with specific time slots for each group.</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><strong>Blue Team:</strong> 6 groups from 10:00-12:00</li>
+                                <li><strong>Yellow Team:</strong> 6 groups from 10:00-12:00</li>
+                                <li>Each group gets a dedicated 20-minute slot</li>
+                                <li><strong class="text-red-600">⚠️ All students must be present starting from 10:00</strong></li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-xl shadow-lg border border-green-200">
+                            <h3 class="text-2xl font-bold mb-3 text-green-800">🎯 How to Start Your Project</h3>
+                            <p class="text-slate-700 mb-3">Comprehensive guide added on project setup:</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li>Create GitHub repository in the organization</li>
+                                <li>Set up project management tools</li>
+                                <li><strong class="text-red-600">Research FIRST</strong> before coding!</li>
+                                <li>Get coach approval before development</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-xl shadow-lg border border-purple-200">
+                            <h3 class="text-2xl font-bold mb-3 text-purple-800">🎓 Enhanced Q&A Page</h3>
+                            <p class="text-slate-700">Massively expanded Q&A covering all aspects: Getting Started, Project Management, Research, Architecture, Grading, Coaching, Teams, and Documentation.</p>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg border border-amber-200">
+                            <h3 class="text-2xl font-bold mb-3 text-amber-800">📊 Project Management Required</h3>
+                            <p class="text-slate-700">All 25 projects now include <strong>Project Management</strong> as a standardized assessment criterion. You will be evaluated on visible progress tracking, organized workflow, and task management.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 3: Your Coach Team -->
+                <section id="slide3" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Your Coach Team 👥</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-xl shadow-lg border border-yellow-200">
+                            <h3 class="text-3xl font-bold mb-6 text-yellow-800">🟡 YELLOW TEAM</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-lg shadow">
+                                    <p class="font-bold text-lg">Dimitri Casier</p>
+                                    <p class="text-sm text-slate-600">Organiser & Project Coach</p>
+                                    <a href="mailto:dimitri.casier@howest.be" class="text-indigo-600 text-sm hover:underline">dimitri.casier@howest.be</a>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow">
+                                    <p class="font-bold text-lg">Dirk Vandycke</p>
+                                    <p class="text-sm text-slate-600">Project Coach</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow">
+                                    <p class="font-bold text-lg">Joost Tack</p>
+                                    <p class="text-sm text-slate-600">Project Coach</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl shadow-lg border border-blue-200">
+                            <h3 class="text-3xl font-bold mb-6 text-blue-800">🔵 BLUE TEAM</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-lg shadow">
+                                    <p class="font-bold text-lg">Mattias De Wael</p>
+                                    <p class="text-sm text-slate-600">Project Coach</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow">
+                                    <p class="font-bold text-lg">Arne Debou</p>
+                                    <p class="text-sm text-slate-600">Project Coach</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow">
+                                    <p class="font-bold text-lg">Frédéric Vlummens</p>
+                                    <p class="text-sm text-slate-600">Project Coach</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg">
+                        <p class="text-indigo-800"><strong>📋 Find your coach team:</strong> Check the project documentation to see which coach team you're assigned to based on your group number.</p>
+                    </div>
+                </section>
+
+                <!-- Slide 4: Coaching Schedule -->
+                <section id="slide4" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Project Coaching Schedule 📅</h2>
+                    
+                    <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg mb-8">
+                        <p class="text-red-800 text-xl font-bold">⚠️ All students must be present starting from 10:00</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Blue Team Schedule -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-blue-200">
+                            <div class="bg-blue-600 text-white p-4">
+                                <h3 class="text-2xl font-bold">🔵 BLUE TEAM Schedule</h3>
+                                <p class="text-sm opacity-90">6 groups × 20 minutes = 2 hours</p>
+                            </div>
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-blue-50 border-b border-blue-200">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 font-semibold text-slate-700">Time</th>
+                                        <th scope="col" class="px-4 py-3 font-semibold text-slate-700">Group</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">10:00 - 10:20</td>
+                                        <td class="px-4 py-3 font-medium">Group 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">10:20 - 10:40</td>
+                                        <td class="px-4 py-3 font-medium">Group 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">10:40 - 11:00</td>
+                                        <td class="px-4 py-3 font-medium">Group 6</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">11:00 - 11:20</td>
+                                        <td class="px-4 py-3 font-medium">Group 10</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">11:20 - 11:40</td>
+                                        <td class="px-4 py-3 font-medium">Group 13</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">11:40 - 12:00</td>
+                                        <td class="px-4 py-3 font-medium">Group 20</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Yellow Team Schedule -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-yellow-200">
+                            <div class="bg-yellow-600 text-white p-4">
+                                <h3 class="text-2xl font-bold">🟡 YELLOW TEAM Schedule</h3>
+                                <p class="text-sm opacity-90">6 groups × 20 minutes = 2 hours</p>
+                            </div>
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-yellow-50 border-b border-yellow-200">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 font-semibold text-slate-700">Time</th>
+                                        <th scope="col" class="px-4 py-3 font-semibold text-slate-700">Group</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">10:00 - 10:20</td>
+                                        <td class="px-4 py-3 font-medium">Group 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">10:20 - 10:40</td>
+                                        <td class="px-4 py-3 font-medium">Group 4</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">10:40 - 11:00</td>
+                                        <td class="px-4 py-3 font-medium">Group 5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">11:00 - 11:20</td>
+                                        <td class="px-4 py-3 font-medium">Group 8</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">11:20 - 11:40</td>
+                                        <td class="px-4 py-3 font-medium">Group 12</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-mono text-slate-600">11:40 - 12:00</td>
+                                        <td class="px-4 py-3 font-medium">Group 19</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-slate-100 p-6 rounded-xl border border-slate-200">
+                        <h4 class="font-semibold text-lg mb-2">📌 This Schedule Applies To:</h4>
+                        <p class="text-slate-600">All project coaching weeks throughout the semester. Check the detailed schedule for which weeks include project coaching.</p>
+                    </div>
+                </section>
+
+                <!-- Slide 5: Technical Coaching -->
+                <section id="slide5" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Technical Coaching 🛠️</h2>
+                    
+                    <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 p-8 rounded-xl shadow-lg border border-emerald-200 mb-8">
+                        <h3 class="text-2xl font-bold mb-4 text-emerald-800">Weekly Availability</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-6 rounded-lg shadow">
+                                <p class="font-bold text-lg mb-2">📍 Dimitri Casier</p>
+                                <p class="text-slate-700"><strong>Every Wednesday:</strong> 09:30 - 11:30</p>
+                                <p class="text-slate-700"><strong>Location:</strong> Building J, First Floor</p>
+                                <p class="text-slate-600 mt-2 text-sm">Available throughout the project period, except during independent work periods (22/12–28/12 & 29/12–03/01)</p>
+                                <p class="text-indigo-600 mt-3">💬 Contact via Teams to schedule or drop by during hours</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+                        <div class="bg-slate-100 p-4 border-b border-slate-200">
+                            <h3 class="text-xl font-bold">Additional Weekly Technical Coaching</h3>
+                        </div>
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-50 border-b border-slate-200">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Week</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Dates</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Coach</th>
+                                    <th scope="col" class="px-6 py-4 font-semibold text-slate-700">Availability</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">1</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">24/11–29/11</td>
+                                    <td class="px-6 py-4">Dimitri Casier</td>
+                                    <td class="px-6 py-4 text-sm">Monday 13:30-15:30 & Wednesday 09:30-11:30 (Building J)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">2</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">01/12–06/12</td>
+                                    <td class="px-6 py-4">TBA</td>
+                                    <td class="px-6 py-4 text-slate-500">TBA</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">3</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">08/12–13/12</td>
+                                    <td class="px-6 py-4">TBA</td>
+                                    <td class="px-6 py-4 text-slate-500">TBA</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">4</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">15/12–20/12</td>
+                                    <td class="px-6 py-4">TBA</td>
+                                    <td class="px-6 py-4 text-slate-500">TBA</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td class="px-6 py-4 font-medium text-slate-500">—</td>
+                                    <td class="px-6 py-4 font-mono text-slate-500">22/12–03/01</td>
+                                    <td class="px-6 py-4 text-slate-500">None</td>
+                                    <td class="px-6 py-4 text-slate-500">Independent work period</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">5</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">05/01–10/01</td>
+                                    <td class="px-6 py-4">TBA</td>
+                                    <td class="px-6 py-4 text-slate-500">TBA</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-slate-900">6</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">12/01–17/01</td>
+                                    <td class="px-6 py-4">TBA</td>
+                                    <td class="px-6 py-4 text-slate-500">TBA</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Slide 6: How to Start a Project -->
+                <section id="slide6" class="section">
+                    <h2 class="text-4xl font-bold mb-8">How to Start Your Project 🚀</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-r from-indigo-50 to-indigo-100 p-6 rounded-xl shadow-lg border border-indigo-200">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">1</div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold mb-2 text-indigo-900">Create GitHub Repository</h3>
+                                    <p class="text-slate-700 mb-3">Create your repository on <strong>github.com/orgs/howest-ti-sep</strong></p>
+                                    <div class="bg-white p-4 rounded-lg border border-indigo-200">
+                                        <p class="font-semibold text-sm text-indigo-800 mb-2">Naming Convention:</p>
+                                        <code class="text-indigo-600 bg-indigo-50 px-3 py-1 rounded">group-&lt;nr&gt;-&lt;reponame&gt;</code>
+                                        <p class="text-xs text-slate-600 mt-2">Example: <code class="bg-slate-100 px-2 py-1 rounded">group-01-typescript-orm</code></p>
+                                    </div>
+                                    <p class="text-red-600 font-semibold mt-3">⚠️ Inform your coaches of your main repository name</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-xl shadow-lg border border-purple-200">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">2</div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold mb-2 text-purple-900">Set Up Project Management</h3>
+                                    <p class="text-slate-700 mb-3"><strong class="text-red-600">BEFORE coding!</strong> Choose and set up your tool:</p>
+                                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                        <li><strong>GitHub Projects</strong> (recommended)</li>
+                                        <li><strong>Trello</strong></li>
+                                        <li><strong>Jira</strong></li>
+                                    </ul>
+                                    <p class="text-purple-800 font-semibold mt-3">Create your board with proper workflow columns</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-red-50 to-red-100 p-6 rounded-xl shadow-lg border border-red-200">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">3</div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold mb-2 text-red-900">Research First! ⚠️</h3>
+                                    <div class="bg-white p-4 rounded-lg border border-red-300 mb-3">
+                                        <p class="text-red-800 font-bold text-lg">Complete the Research Flow before substantial implementation</p>
+                                    </div>
+                                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                        <li>Any early code is <strong>for experimentation only</strong></li>
+                                        <li>Document your research process</li>
+                                        <li>Analyze existing solutions and alternatives</li>
+                                        <li>Get coach approval before starting real development</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg">
+                        <p class="text-amber-800"><strong>💡 Key Takeaway:</strong> Setup and research come first. Don't rush into coding without proper planning and approval!</p>
+                    </div>
+                </section>
+
+                <!-- Slide 7: Preparing for Coaching Sessions -->
+                <section id="slide7" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Preparing for Coaching Sessions 📝</h2>
+                    
+                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg mb-8">
+                        <p class="text-indigo-900 text-lg">Make the most of your 20-minute coaching slot by coming prepared!</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-xl font-bold mb-4 text-indigo-700">✅ Before the Session</h3>
+                            <ul class="space-y-3 text-slate-700">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                    <span><strong>Update your project board</strong> - All tasks and progress must be visible</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                    <span><strong>Prepare a brief pitch</strong> covering:
+                                        <ul class="list-disc list-inside ml-4 mt-1 text-sm">
+                                            <li>Work completed since last session</li>
+                                            <li>Plans for next sprint</li>
+                                            <li>Key decisions made</li>
+                                            <li>Current blockers</li>
+                                        </ul>
+                                    </span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                    <span><strong>Bring specific questions</strong> - Not vague requests like "help us with X"</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-xl font-bold mb-4 text-emerald-700">💡 During the Session</h3>
+                            <ul class="space-y-3 text-slate-700">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-600 font-bold">→</span>
+                                    <span><strong>Be ready to explain</strong> your technical choices</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-600 font-bold">→</span>
+                                    <span><strong>Defend your decisions</strong> with evidence and reasoning</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-600 font-bold">→</span>
+                                    <span><strong>Show, don't tell</strong> - Demo your work when possible</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-600 font-bold">→</span>
+                                    <span><strong>Take notes</strong> on feedback and action items</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-red-50 p-6 rounded-xl border border-red-200">
+                        <h4 class="font-bold text-lg mb-3 text-red-800">❌ What NOT to Do</h4>
+                        <ul class="space-y-2 text-red-700">
+                            <li>❌ Come unprepared without reviewing your progress</li>
+                            <li>❌ Ask coaches to solve problems you haven't researched</li>
+                            <li>❌ Make excuses for lack of progress</li>
+                            <li>❌ Ignore previous coaching feedback</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Slide 8: Project Management -->
+                <section id="slide8" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Project Management Assessment 📊</h2>
+                    
+                    <div class="bg-gradient-to-r from-red-50 to-orange-50 p-8 rounded-xl shadow-lg border border-red-200 mb-8">
+                        <h3 class="text-2xl font-bold mb-4 text-red-800">⚠️ Now a Standardized Assessment Criterion</h3>
+                        <p class="text-lg text-slate-700">All 25 projects now include <strong>Project Management</strong> as a mandatory assessment criterion.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <div class="bg-indigo-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600">
+                                    <path d="M12 20V10"></path>
+                                    <path d="M18 20V4"></path>
+                                    <path d="M6 20v-4"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Visible Progress Tracking</h4>
+                            <p class="text-slate-600">Your project board should clearly show what's done, in progress, and planned</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                                    <path d="M9 3v18"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Organized Workflow</h4>
+                            <p class="text-slate-600">Use proper columns, labels, and structure in your project management tool</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <div class="bg-emerald-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-600">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Task Management</h4>
+                            <p class="text-slate-600">Break work into manageable tasks with clear ownership and deadlines</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-100 p-6 rounded-xl border border-slate-200">
+                        <h4 class="font-semibold text-lg mb-3">💡 Best Practices</h4>
+                        <ul class="grid md:grid-cols-2 gap-3 text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600">✓</span>
+                                <span>Update board daily or after each work session</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600">✓</span>
+                                <span>Link commits and PRs to issues/tasks</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600">✓</span>
+                                <span>Use milestones to track sprint goals</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600">✓</span>
+                                <span>Document decisions in task descriptions</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Slide 9: Resources -->
+                <section id="slide9" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Essential Resources 📚</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-r from-indigo-50 to-indigo-100 p-8 rounded-xl shadow-lg border border-indigo-200">
+                            <h3 class="text-2xl font-bold mb-4 text-indigo-800">📖 Project Documentation</h3>
+                            <p class="text-lg text-slate-700 mb-6">The <strong>single source of truth</strong> for all project information, guidelines, templates, and updates.</p>
+                            <a href="https://se-project.technet.howest.be/announcements.html" target="_blank" rel="noopener noreferrer" class="inline-block bg-indigo-600 text-white font-bold text-lg px-8 py-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                                View Project Documentation
+                            </a>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-xl shadow-lg border border-emerald-200">
+                                <h3 class="text-xl font-bold mb-3 text-emerald-800">🎯 Planning & Milestones</h3>
+                                <p class="text-slate-700 mb-4">All important project milestones, deliverable deadlines, and critical dates.</p>
+                                <a href="https://se-project.technet.howest.be/project_info/overview/planning.html#key-milestones-and-deadlines" target="_blank" rel="noopener noreferrer" class="inline-block bg-emerald-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors">
+                                    View Planning →
+                                </a>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg border border-amber-200">
+                                <h3 class="text-xl font-bold mb-3 text-amber-800">❓ Q&A Page</h3>
+                                <p class="text-slate-700 mb-4">Comprehensive answers covering Getting Started, Project Management, Research, and more.</p>
+                                <a href="https://se-project.technet.howest.be/appendices/q_and_a.html" target="_blank" rel="noopener noreferrer" class="inline-block bg-amber-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-amber-700 transition-colors">
+                                    Browse Q&A →
+                                </a>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-xl shadow-lg border border-purple-200">
+                                <h3 class="text-xl font-bold mb-3 text-purple-800">👥 Teams & Projects</h3>
+                                <p class="text-slate-700 mb-4">Find your group assignment, project details, and coach team.</p>
+                                <a href="https://se-project.technet.howest.be/project_info/overview/teams_and_projects.html" target="_blank" rel="noopener noreferrer" class="inline-block bg-purple-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                                    View Groups →
+                                </a>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg border border-blue-200">
+                                <h3 class="text-xl font-bold mb-3 text-blue-800">📋 Coaching Info</h3>
+                                <p class="text-slate-700 mb-4">Details on coaching format, preparation tips, and coach contacts.</p>
+                                <a href="https://se-project.technet.howest.be/project_info/overview/coaching.html" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                                    Coaching Guide →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg">
+                        <p class="text-yellow-800"><strong>⚠️ Important:</strong> All links are hosted on <code class="bg-yellow-100 px-2 py-1 rounded">se-project.technet.howest.be</code> - Bookmark it!</p>
+                    </div>
+                </section>
+
+                <!-- Slide 10: Questions -->
+                <section id="slide10" class="section">
+                    <h2 class="text-4xl font-bold mb-8">Questions? 💬</h2>
+                    
+                    <div class="bg-gradient-to-br from-indigo-50 to-blue-50 p-8 rounded-xl shadow-lg border border-indigo-100 mb-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-indigo-100 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-lg text-slate-700 mb-6">
+                                    Have questions or found an error? Reach out to your organizer!
+                                </p>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="text-sm font-semibold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full">Email</span>
+                                        <span class="font-mono text-lg text-slate-800">dimitri.casier@howest.be</span>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border border-indigo-200">
+                                        <h4 class="font-semibold text-indigo-700 mb-2">Subject Format:</h4>
+                                        <code class="text-indigo-600 bg-indigo-50 px-3 py-1 rounded text-sm">[PROJECT S5] - &lt;your-subject-title&gt;</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-xl font-bold mb-4 text-slate-800">📞 Contact Your Coaches</h3>
+                            <div class="space-y-6 text-slate-700">
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 mb-2">Contact policy and availability</h4>
+                                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                                        <p class="font-semibold mb-1">Dimitri Casier</p>
+                                        <ul class="list-disc list-inside space-y-1">
+                                            <li>First contact for team dynamics, conflicts, workload concerns, and unresolved project questions.</li>
+                                            <li>Use scheduled coaching sessions first; if still blocked, contact via email or Teams.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-200 mt-3">
+                                        <p class="font-semibold mb-1">Other coaches</p>
+                                        <ul class="list-disc list-inside space-y-1">
+                                            <li>Provide on‑demand, supportive technical advice during defined coaching moments only.</li>
+                                            <li>Book via the tool or use published slots on the <a class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer" href="https://se-project.technet.howest.be/project_info/overview/planning.html#technical-coaching">Planning</a> page.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 mb-2">Before contacting a coach (quick checklist)</h4>
+                                    <ul class="space-y-2">
+                                        <li class="flex items-start gap-2"><span class="text-green-600">✓</span><span>Read this page and the course docs (Planning, Teams & Projects, House Rules, Grading).</span></li>
+                                        <li class="flex items-start gap-2"><span class="text-green-600">✓</span><span>Read your project description/spec.</span></li>
+                                        <li class="flex items-start gap-2"><span class="text-green-600">✓</span><span>Use the scheduled coaching moments first (project and technical).</span></li>
+                                        <li class="flex items-start gap-2"><span class="text-green-600">✓</span><span>If still blocked, contact <strong>Dimitri Casier</strong>. For group‑working issues, contact only <strong>Dimitri Casier</strong>.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                            <h3 class="text-xl font-bold mb-4 text-slate-800">🔍 Check the Q&A First</h3>
+                            <p class="text-slate-600 mb-3">Many questions are already answered:</p>
+                            <ul class="space-y-2 text-slate-700">
+                                <li>✓ Getting Started</li>
+                                <li>✓ Project Management</li>
+                                <li>✓ Research Process</li>
+                                <li>✓ Grading Criteria</li>
+                                <li>✓ Team Collaboration</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-emerald-50 p-8 rounded-xl border border-emerald-200 text-center">
+                        <h3 class="text-3xl font-bold mb-4 text-emerald-800">Ready to Build Something Great? 🚀</h3>
+                        <p class="text-xl text-slate-700">Let's make this project a success!</p>
+                        <p class="text-lg text-slate-600 mt-2">Good luck, and see you at the first coaching session! 💪</p>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const slideOrder = Array.from(navLinks).map(link => link.getAttribute('href'));
+            const prevButton = document.getElementById('prev-slide');
+            const nextButton = document.getElementById('next-slide');
+
+            function updateNavButtons(hash) {
+                const currentIndex = slideOrder.indexOf(hash);
+                prevButton.disabled = currentIndex <= 0;
+                nextButton.disabled = currentIndex >= slideOrder.length - 1;
+            }
+
+            function showSection(hash) {
+                const targetHash = slideOrder.includes(hash) ? hash : slideOrder[0];
+                
+                for (const section of sections) {
+                    if ('#' + section.id === targetHash) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                }
+
+                for (const link of navLinks) {
+                    if (link.getAttribute('href') === targetHash) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                }
+
+                updateNavButtons(targetHash);
+            }
+
+            function navigate(direction) {
+                const currentHash = globalThis.location.hash || slideOrder[0];
+                const currentIndex = slideOrder.indexOf(currentHash);
+                const nextIndex = currentIndex + direction;
+
+                if (nextIndex >= 0 && nextIndex < slideOrder.length) {
+                    const nextHash = slideOrder[nextIndex];
+                    history.pushState(null, '', nextHash);
+                    showSection(nextHash);
+                }
+            }
+
+            document.getElementById('navigation').addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const targetHash = e.target.getAttribute('href');
+                    history.pushState(null, '', targetHash);
+                    showSection(targetHash);
+                }
+            });
+
+            prevButton.addEventListener('click', () => navigate(-1));
+            nextButton.addEventListener('click', () => navigate(1));
+
+            document.addEventListener('keydown', function(e) {
+                if (e.target.tagName === 'INPUT' || e.target.isContentEditable) {
+                    return;
+                }
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    navigate(1);
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    navigate(-1);
+                }
+            });
+            
+            globalThis.addEventListener('popstate', function() {
+                showSection(globalThis.location.hash);
+            });
+
+            showSection(globalThis.location.hash);
+        });
+    </script>
+</body>
+</html>
